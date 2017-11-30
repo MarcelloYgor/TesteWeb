@@ -18,11 +18,13 @@ public class CorridaDAO {
 		PreparedStatement stmt = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "INSERT INTO tb_corrida(id_mot_corrida, id_pas_corrida, vl_corrida) VALUES (?, ?, ?);";
+			String sql = "INSERT INTO tb_rebu_corrida(id_mot_corrida, id_pas_corrida, vl_corrida) VALUES (?, ?, ?)";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setInt(1, corrida.getIdMotCorrida());
 			stmt.setInt(2, corrida.getIdPasCorrida());
 			stmt.setDouble(3, corrida.getVlCorrida());
+			
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Couldnt save object in database!\n SqlState: " + e.getSQLState() + "\nErrorCode: "
 					+ e.getErrorCode() + " " + "\nMessage: " + e.getMessage());
@@ -39,7 +41,7 @@ public class CorridaDAO {
 		Corrida corrida = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "SELECT * FROM tb_corrida WHERE id = ?";
+			String sql = "SELECT * FROM tb_rebu_corrida WHERE id = ?";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setInt(1, id);
 
@@ -69,7 +71,7 @@ public class CorridaDAO {
 		PreparedStatement stmt = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "DELETE FROM tb_passageiro WHERE nome = ?;";
+			String sql = "DELETE FROM tb_rebu_passageiro WHERE nome = ?";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setInt(1, id);
 
@@ -88,7 +90,7 @@ public class CorridaDAO {
 		Corrida corrida = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "UPDATE tb_corrida SET id_mot_corrida = ?, id_pas_corrida = ?, vl_corrida = ? WHERE id = ?;";
+			String sql = "UPDATE tb_rebu_corrida SET id_mot_corrida = ?, id_pas_corrida = ?, vl_corrida = ? WHERE id = ?";
 			stmt = connection.getPreparedStatement(sql);
 			corrida = new Corrida();
 			stmt.setInt(1, corrida.getIdMotCorrida());

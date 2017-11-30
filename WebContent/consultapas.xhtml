@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h1>PORRAAAAAA</h1>
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nome</th>
+				<th scope="col">Nascimento</th>
+				<th scope="col">Sexo</th>
+			</tr>
+		</thead>
+		<tbody>
+			<ui:repeat var="pas" value="#{PegaPassageiro.listaPas}">
+				<h:form>
+					<tr>
+						<td><h:outputText value="#{pas.nome}" /></td>
+						<td><h:outputText value="#{pas.dtNascimento}" /></td>
+						<td><h:outputText value="#{pas.sexo}" /></td>
+					</tr>
+				</h:form>
+			</ui:repeat>
+		</tbody>
+	</table>
+
+</ui:composition>

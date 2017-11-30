@@ -20,9 +20,9 @@ public class RebuDatasource {
 		try {
 			System.out.println("Conectando no banco de dados");
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String connection = "jdbc:sqlserver://localhost:1433;databaseName=master";
-			String usuario = "sa";
-			String senha = "senhadobanco12";
+			String connection = "jdbc:sqlserver://meubancoaz.database.windows.net:1433;database=teste";
+			String usuario = "roote";
+			String senha = "Abcd1234";
 			conn = DriverManager.getConnection(connection, usuario, senha);
 		} catch (ClassNotFoundException ex) {
 			System.out.println("Error: unable to load driver class!");

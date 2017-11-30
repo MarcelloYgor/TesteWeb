@@ -1,6 +1,7 @@
 package bean;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -18,12 +19,31 @@ import rebu.model.Motorista;
 public class CMotoristaBean {
 
 	private Motorista motorista;
+	private int idMotorista;
+	private String nome;
+	private Date dtNascimento;
+	private String cpf;
+	private String carroModelo;
+	private boolean status;
+	private String sexo;
 	
 	@EJB
 	private ValidaMotorista vldMotorista;
 	
 	public void salvar() {
-		System.out.println(motorista.getNome());
+		System.out.println(nome);
+		System.out.println(dtNascimento);
+		System.out.println(cpf);
+		System.out.println(carroModelo);
+		System.out.println(status);
+		System.out.println(sexo);
+		motorista = new Motorista();
+		motorista.setNome(nome);
+		motorista.setDtNascimento(dtNascimento);
+		motorista.setCpf(cpf);
+		motorista.setCarroModelo(carroModelo);
+		motorista.setStatus(status);
+		motorista.setSexo(sexo);
 		vldMotorista.cadastraMotorista(motorista);
 	}
 	
@@ -33,11 +53,67 @@ public class CMotoristaBean {
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
     }
 
-	public Motorista getMotorista() {
-		return motorista;
+	public int getIdMotorista() {
+		return idMotorista;
 	}
 
-	public void setMotorista(Motorista motorista) {
-		this.motorista = motorista;
+	public void setIdMotorista(int idMotorista) {
+		this.idMotorista = idMotorista;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Date getDtNascimento() {
+		return dtNascimento;
+	}
+
+	public void setDtNascimento(Date dtNascimento) {
+		this.dtNascimento = dtNascimento;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public String getCarroModelo() {
+		return carroModelo;
+	}
+
+	public void setCarroModelo(String carroModelo) {
+		this.carroModelo = carroModelo;
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public ValidaMotorista getVldMotorista() {
+		return vldMotorista;
+	}
+
+	public void setVldMotorista(ValidaMotorista vldMotorista) {
+		this.vldMotorista = vldMotorista;
 	}
 }

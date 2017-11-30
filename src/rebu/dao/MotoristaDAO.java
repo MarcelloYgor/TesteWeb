@@ -17,7 +17,7 @@ public class MotoristaDAO {
 		PreparedStatement stmt = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "INSERT INTO tb_motorista(nome, dt_nasc, cpf, mod_carro, status, sexo) VALUES (?, ?, ?, ?, ?, ?);";
+			String sql = "INSERT INTO tb_rebu_motorista(nome, dt_nasc, cpf, mod_carro, status, sexo) VALUES (?, ?, ?, ?, ?, ?)";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setString(1, motorista.getNome());
 			stmt.setDate(2, converteData(motorista.getDtNascimento()));
@@ -25,6 +25,8 @@ public class MotoristaDAO {
 			stmt.setString(4, motorista.getCarroModelo());
 			stmt.setBoolean(5, motorista.isStatus());
 			stmt.setString(6, motorista.getSexo());
+			
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Couldnt save object in database!\n SqlState: " + e.getSQLState() + "\nErrorCode: "
 					+ e.getErrorCode() + " " + "\nMessage: " + e.getMessage());
@@ -41,7 +43,7 @@ public class MotoristaDAO {
 		Motorista motorista = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "SELECT * FROM tb_motorista WHERE nome LIKE ?";
+			String sql = "SELECT * FROM tb_rebu_motorista WHERE nome LIKE ?";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setString(1, "%" + nome + "%");
 
@@ -73,7 +75,7 @@ public class MotoristaDAO {
 		PreparedStatement stmt = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "DELETE FROM tb_motorista WHERE nome = ?;";
+			String sql = "DELETE FROM tb_rebu_motorista WHERE nome = ?";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setString(1, nome);
 
@@ -92,7 +94,7 @@ public class MotoristaDAO {
 		Motorista motorista = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "UPDATE tb_motorista SET nome = ?, dt_nasc = ?, cpf = ?, mod_carro = ?, status = ?, sexo = ? WHERE id = ?;";
+			String sql = "UPDATE tb_rebu_motorista SET nome = ?, dt_nasc = ?, cpf = ?, mod_carro = ?, status = ?, sexo = ? WHERE id = ?";
 			stmt = connection.getPreparedStatement(sql);
 			motorista = new Motorista();
 			stmt.setString(1, motorista.getNome());
@@ -115,6 +117,7 @@ public class MotoristaDAO {
 
 	private java.sql.Date converteData(java.util.Date dataUtil) {
 		java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
+		System.out.println(dataSql);
 		return dataSql;
 	}
 }

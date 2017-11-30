@@ -3,9 +3,12 @@ package ejb;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import rebu.dao.PassageiroDAO;
 import rebu.model.Passageiro;
 
+@Stateless
 public class ValidaPassageiro {
 
 	private PassageiroDAO pasDAO = new PassageiroDAO();
@@ -16,8 +19,8 @@ public class ValidaPassageiro {
 		return retorno;
 	}
 	
-	public void cadastraPassageiro() {
-		
+	public void cadastraPassageiro(Passageiro passageiro) {
+		pasDAO.inserirPassageiro(passageiro);
 	}
 	
 	public void alterarPassageiro() {

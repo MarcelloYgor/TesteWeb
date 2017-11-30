@@ -43,94 +43,94 @@
 			</ul>
 		</div>
 		</nav> </header>
-		<section id="corpo"> <article id="tronco">
-		<form>
+		<section id="corpo"> <article id="tronco"> <h:form>
 			<div class="form-group row">
-				<label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
+				<label class="col-sm-2 col-form-label">Nome</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="inputEmail3"
-						placeholder="Email" />
+					<h:inputText value="#{ManterPassageiro.nome}" class="form-control" />
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword3" class="col-sm-2 col-form-label">Data
-					de nascimento</label>
+				<label class="col-sm-2 col-form-label">Data de nascimento</label>
 				<div class="col-sm-10">
-					<h:form id="form">
-						<p:growl id="msgs" showDetail="true" />
+					<p:growl id="msgs" showDetail="true" />
 
-						<h:panelGrid columns="2" cellpadding="5">
-							<p:outputLabel for="popup" value="Popup:" />
-							<p:calendar id="popup" value="#{ManterMotorista.dtNascimento}" />
-						</h:panelGrid>
-						<p:dialog modal="true" resizable="false" header="Values"
-							widgetVar="dlg" showEffect="fold">
-							<p:panelGrid id="display" columns="2" columnClasses="label,value">
-								<h:outputText value="Popup:" />
-								<h:outputText value="#{ManterMotorista.dtNascimento}">
-									<f:convertDateTime pattern="dd/MM/yyyy" />
-								</h:outputText>
-							</p:panelGrid>
-						</p:dialog>
-					</h:form>
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:calendar id="popup" value="#{ManterPassageiro.dtNascimento}"
+							class="form-control" />
+					</h:panelGrid>
+
+					<p:dialog modal="true" resizable="false" header="Values"
+						widgetVar="dlg" showEffect="fold">
+						<p:panelGrid id="display" columns="2" columnClasses="label,value">
+							<h:outputText value="Popup:" />
+							<h:outputText value="#{ManterPassageiro.dtNascimento}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</p:panelGrid>
+					</p:dialog>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputEmail3" class="col-sm-2 col-form-label">CPF</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="inputEmail3"
-						placeholder="Email" />
+					<h:inputText value="#{ManterPassageiro.cpf}" class="form-control" />
 				</div>
 			</div>
-			<div class="col-auto">
-				<label class="mr-sm-2" for="inlineFormCustomSelect">Sexo</label> <select
-					class="custom-select mb-2 mr-sm-2 mb-sm-0"
-					id="inlineFormCustomSelect">
-					<option selected="true">Choose...</option>
-					<option value="1">Masculino</option>
-					<option value="2">Feminino</option>
-				</select>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Sexo</label>
+				<div class="col-sm-10">
+					<p:messages autoUpdate="true" />
+
+					<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+						<p:selectOneMenu id="console1" value="#{ManterPassageiro.sexo}"
+							style="width:125px">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+							<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+
+					<p:dialog header="Values" modal="true" showEffect="bounce"
+						widgetVar="dlg" resizable="false">
+						<p:panelGrid columns="2" id="display2" columnClasses="label,value">
+							<h:outputText value="Basic:" />
+							<h:outputText value="#{ManterPassageiro.sexo}" />
+						</p:panelGrid>
+					</p:dialog>
+				</div>
 			</div>
 			<br />
 			<div class="form-group row">
 				<div class="col-sm-10">
-					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#exampleModal">Salvar</button>
+					<p:growl id="message" showDetail="true" />
+
+					<p:commandButton value="Salvar"
+						actionListener="#{ManterPassageiro.salvar()}" update="message"
+						class="btn btn-primary">
+						<p:confirm header="Confirmação" message="Deseja cadastrar?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+
+					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+						<p:commandButton value="Confirmar" type="button"
+							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+						<p:commandButton value="Cancelar" type="button"
+							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</p:confirmDialog>
 					<button type="submit" class="btn btn-primary">Cancelar</button>
 				</div>
 			</div>
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">Tem certeza que deseja salvar?</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save
-								changes</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-		</article> </section>
+		</h:form> </article> </section>
 
 		<footer id="rodape">
 		<p></p>
 		</footer>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"></script> -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
 		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"

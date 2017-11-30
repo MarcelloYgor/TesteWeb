@@ -13,18 +13,18 @@ public class PassageiroDAO {
 	
 	private RebuDatasource connection;
 	
-	public void inserirPassageiro() {
+	public void inserirPassageiro(Passageiro passageiro) {
 		PreparedStatement stmt = null;
-		Passageiro passageiro = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "INSERT INTO tb_passageiro(nome, dt_nasc, cpf, sexo) VALUES (?, ?, ?, ?);";
+			String sql = "INSERT INTO tb_rebu_passageiro(nome, dt_nasc, cpf, sexo) VALUES (?, ?, ?, ?)";
 			stmt = connection.getPreparedStatement(sql);
-			passageiro = new Passageiro();
 			stmt.setString(1, passageiro.getNome());
 			stmt.setDate(2, converteData(passageiro.getDtNascimento()));
 			stmt.setString(3, passageiro.getCpf());
 			stmt.setString(4, passageiro.getSexo());
+			
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Couldnt save object in database!\n SqlState: " + e.getSQLState() + "\nErrorCode: "
 					+ e.getErrorCode() + " " + "\nMessage: " + e.getMessage());
@@ -41,15 +41,14 @@ public class PassageiroDAO {
 		Passageiro passageiro = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "SELECT * FROM tb_passageiro WHERE nome = ?";
+			String sql = "SELECT * FROM tb_rebu_passageiro WHERE nome LIKE ?";
 			stmt = connection.getPreparedStatement(sql);
-			stmt.setString(1, nome);
+			stmt.setString(1, "%" + nome + "%");
 
 			ResultSet result = stmt.executeQuery();
 			
 			retorno = new ArrayList<>();
 			while (result.next()) {
-				result.next();
 				passageiro = new Passageiro();
 				passageiro.setIdPassageiro(result.getInt("id_passageiro"));
 				passageiro.setNome(result.getString("nome"));
@@ -72,7 +71,7 @@ public class PassageiroDAO {
 		PreparedStatement stmt = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "DELETE FROM tb_passageiro WHERE nome = ?;";
+			String sql = "DELETE FROM tb_rebu_passageiro WHERE nome = ?";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setString(1, nome);
 
@@ -91,7 +90,7 @@ public class PassageiroDAO {
 		Passageiro passageiro = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "UPDATE tb_passageiro SET nome = ?, dt_nasc = ?, cpf = ?, sexo = ? WHERE id = ?;";
+			String sql = "UPDATE tb_rebu_passageiro SET nome = ?, dt_nasc = ?, cpf = ?, sexo = ? WHERE id = ?";
 			stmt = connection.getPreparedStatement(sql);
 			passageiro = new Passageiro();
 			stmt.setString(1, passageiro.getNome());
