@@ -15,12 +15,15 @@ public class ValidaMotorista {
 	
 	public List<Motorista> consultaMotorista(String nome) {
 		List<Motorista> retorno = new ArrayList<>();
-		retorno = motDAO.consultarMotorista();
+		retorno = motDAO.consultarMotorista(nome);
+		for (Motorista mot : retorno) {
+			System.out.println(mot.getCpf());
+		}
 		return retorno;
 	}
 	
-	public void cadastraMotorista() {
-		
+	public void cadastraMotorista(Motorista motorista) {
+		motDAO.inserirMotorista(motorista);
 	}
 	
 	public void alterarMotorista() {

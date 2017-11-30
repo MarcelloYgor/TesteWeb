@@ -2,20 +2,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<head>
-<meta charset="utf8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title>Rebu</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-	integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-	crossorigin="anonymous" />
+<h:head>
+	<meta charset="utf8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Rebu</title>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+		integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+		crossorigin="anonymous" />
 
-</head>
-<body>
+</h:head>
+<h:body>
 	<div id="interface">
 		<header id="cabecalho"> <hgroup>
 		<h1>Rebu</h1>
@@ -45,89 +46,113 @@
 		<section id="corpo"> <article id="tronco">
 		<form>
 			<div class="form-group row">
-				<label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
+				<label class="col-sm-2 col-form-label">Nome</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="inputEmail3"
-						placeholder="Email" />
+					<h:inputText value="#{ManterMotorista.motorista.nome}"
+						class="form-control" />
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="inputPassword3" class="col-sm-2 col-form-label">Data
-					de nascimento</label>
+				<label class="col-sm-2 col-form-label">Data de nascimento</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" id="inputPassword3"
-						placeholder="Password" />
+					<h:form id="form">
+						<p:growl id="msgs" showDetail="true" />
+
+						<h:panelGrid columns="2" cellpadding="5">
+							<p:calendar id="popup"
+								value="#{ManterMotorista.motorista.dtNascimento}"
+								class="form-control" />
+						</h:panelGrid>
+
+						<p:dialog modal="true" resizable="false" header="Values"
+							widgetVar="dlg" showEffect="fold">
+							<p:panelGrid id="display" columns="2" columnClasses="label,value">
+								<h:outputText value="Popup:" />
+								<h:outputText value="#{ManterMotorista.motorista.dtNascimento}">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</h:outputText>
+							</p:panelGrid>
+						</p:dialog>
+					</h:form>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputEmail3" class="col-sm-2 col-form-label">CPF</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="inputEmail3"
-						placeholder="Email" />
+					<h:inputText value="#{ManterMotorista.motorista.cpf}"
+						class="form-control" />
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="inputEmail3" class="col-sm-2 col-form-label">Modelo
 					do carro</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" id="inputEmail3"
-						placeholder="Email" />
+					<h:inputText value="#{ManterMotorista.motorista.carroModelo}"
+						class="form-control" />
 				</div>
 			</div>
 			<fieldset class="form-group">
 				<div class="row">
 					<legend class="col-form-legend col-sm-2">Status</legend>
 					<div class="col-sm-10">
-						<div class="form-check">
-							<label class="form-check-label"> <input
-								class="form-check-input" type="radio" name="gridRadios"
-								id="gridRadios1" value="option1" checked="true" /> Ativo
-							</label>
-						</div>
-						<div class="form-check">
-							<label class="form-check-label"> <input
-								class="form-check-input" type="radio" name="gridRadios"
-								id="gridRadios2" value="option2" /> Inativo
-							</label>
-						</div>
+						<h:panelGrid columns="2" style="margin-bottom:10px"
+							cellpadding="5">
+							<p:selectOneRadio id="console"
+								value="#{ManterMotorista.motorista.status}">
+								<f:selectItem itemLabel="Ativo" itemValue="1" />
+								<f:selectItem itemLabel="Inativo" itemValue="0" />
+							</p:selectOneRadio>
+						</h:panelGrid>
 					</div>
 				</div>
 			</fieldset>
-			<div class="col-auto">
-				<label class="mr-sm-2" for="inlineFormCustomSelect">Sexo</label> <select
-					class="custom-select mb-2 mr-sm-2 mb-sm-0"
-					id="inlineFormCustomSelect">
-					<option selected="true">Choose...</option>
-					<option value="1">Masculino</option>
-					<option value="2">Feminino</option>
-				</select>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label">Sexo</label>
+				<div class="col-sm-10">
+					<h:form>
+						<p:messages autoUpdate="true" />
+
+						<h:panelGrid columns="2" style="margin-bottom:10px"
+							cellpadding="5">
+							<p:selectOneMenu id="console"
+								value="#{ManterMotorista.motorista.sexo}" style="width:125px">
+								<f:selectItem itemLabel="Selecione" itemValue="" />
+								<f:selectItem itemLabel="Feminino" itemValue="Feminino" />
+								<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+
+						<p:dialog header="Values" modal="true" showEffect="bounce"
+							widgetVar="dlg" resizable="false">
+							<p:panelGrid columns="2" id="display" columnClasses="label,value">
+								<h:outputText value="Basic:" />
+								<h:outputText value="#{ManterMotorista.motorista.sexo}" />
+							</p:panelGrid>
+						</p:dialog>
+					</h:form>
+				</div>
 			</div>
 			<br />
 			<div class="form-group row">
 				<div class="col-sm-10">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Salvar</button>
+					<h:form>
+						<p:growl id="message" showDetail="true" />
+
+						<p:commandButton value="Salvar"
+							actionListener="#{ManterMotorista.salvar()}" update="message"
+							class="btn btn-primary">
+							<p:confirm header="Confirmação" message="Deseja cadastrar?"
+								icon="ui-icon-alert" />
+						</p:commandButton>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Confirmar" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Cancelar" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+					</h:form>
 					<button type="submit" class="btn btn-primary">Cancelar</button>
-				</div>
-			</div>
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">Tem certeza que deseja salvar?</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save
-								changes</button>
-						</div>
-					</div>
 				</div>
 			</div>
 		</form>
@@ -138,9 +163,9 @@
 		</footer>
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"></script>-->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
 		integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
@@ -149,5 +174,5 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
 		integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
 		crossorigin="anonymous"></script>
-</body>
+</h:body>
 </html>

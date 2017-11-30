@@ -7,12 +7,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import ejb.ValidaCorrida;
-import ejb.ValidaMotorista;
 import rebu.model.Corrida;
-import rebu.model.Motorista;
 
-@ManagedBean(name = "ValidaMotorista")
 @SessionScoped
+@ManagedBean(name = "PegaCorrida")
 public class CorridaBean {
 	private Corrida corrida;
 	private List<Corrida> listaCor;

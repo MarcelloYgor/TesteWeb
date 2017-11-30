@@ -3,9 +3,7 @@ package ejb;
 import java.util.ArrayList;
 import java.util.List;
 
-import rebu.dao.MotoristaDAO;
 import rebu.dao.PassageiroDAO;
-import rebu.model.Motorista;
 import rebu.model.Passageiro;
 
 public class ValidaPassageiro {
@@ -14,7 +12,7 @@ public class ValidaPassageiro {
 	
 	public List<Passageiro> consultaPassageiro(String nome) {
 		List<Passageiro> retorno = new ArrayList<>();
-		retorno = pasDAO.consultarPassageiro();
+		retorno = pasDAO.consultarPassageiro(nome);
 		return retorno;
 	}
 	

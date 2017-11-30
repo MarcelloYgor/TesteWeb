@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rebu.dao.CorridaDAO;
-import rebu.dao.MotoristaDAO;
 import rebu.model.Corrida;
-import rebu.model.Motorista;
 
 public class ValidaCorrida {
 
@@ -14,7 +12,7 @@ public class ValidaCorrida {
 	
 	public List<Corrida> consultaCorrida(int id) {
 		List<Corrida> retorno = new ArrayList<>();
-		retorno = corDAO.consultarCorrida();
+		retorno = corDAO.consultarCorrida(id);
 		return retorno;
 	}
 	

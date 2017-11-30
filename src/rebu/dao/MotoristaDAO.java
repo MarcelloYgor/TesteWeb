@@ -13,14 +13,12 @@ public class MotoristaDAO {
 
 	private RebuDatasource connection;
 
-	public void inserirMotorista() {
+	public void inserirMotorista(Motorista motorista) {
 		PreparedStatement stmt = null;
-		Motorista motorista = null;
 		try {
 			connection = new RebuDatasource();
 			String sql = "INSERT INTO tb_motorista(nome, dt_nasc, cpf, mod_carro, status, sexo) VALUES (?, ?, ?, ?, ?, ?);";
 			stmt = connection.getPreparedStatement(sql);
-			motorista = new Motorista();
 			stmt.setString(1, motorista.getNome());
 			stmt.setDate(2, converteData(motorista.getDtNascimento()));
 			stmt.setString(3, motorista.getCpf());
@@ -43,15 +41,14 @@ public class MotoristaDAO {
 		Motorista motorista = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "SELECT * FROM tb_motorista WHERE nome = ?";
+			String sql = "SELECT * FROM tb_motorista WHERE nome LIKE ?";
 			stmt = connection.getPreparedStatement(sql);
-			stmt.setString(1, nome);
+			stmt.setString(1, "%" + nome + "%");
 
 			ResultSet result = stmt.executeQuery();
 			
 			retorno = new ArrayList<>();
 			while (result.next()) {
-				result.next();
 				motorista = new Motorista();
 				motorista.setIdMotorista(result.getInt("id_motorista"));
 				motorista.setNome(result.getString("nome"));

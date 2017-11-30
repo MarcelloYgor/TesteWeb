@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<h1>PORRAAAAAA</h1>
+
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th scope="col">Nome</th>
+				<th scope="col">Carro</th>
+				<th scope="col">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<ui:repeat var="mot" value="#{PegaMotorista.listaMot}">
+				<h:form>
+					<tr>
+						<td><h:outputText value="#{mot.nome}" /></td>
+						<td><h:outputText value="#{mot.carroModelo}" /></td>
+						<td><h:outputText value="#{mot.status}" /></td>
+					</tr>
+				</h:form>
+			</ui:repeat>
+		</tbody>
+	</table>
+
+</ui:composition>

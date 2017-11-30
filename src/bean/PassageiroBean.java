@@ -6,13 +6,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import ejb.ValidaMotorista;
 import ejb.ValidaPassageiro;
-import rebu.model.Motorista;
 import rebu.model.Passageiro;
 
-@ManagedBean(name = "ValidaMotorista")
 @SessionScoped
+@ManagedBean(name = "PegaPassageiro")
 public class PassageiroBean {
 	
 	private Passageiro passageiro;
@@ -22,7 +20,7 @@ public class PassageiroBean {
 	private ValidaPassageiro vldPassageiro;
 	
 	public void consultar() {
-		listaPas = vldPassageiro.consultaPassageiro(passageiro.getNome());
+		System.out.println("porra");
 	}
 	
 	public void salvar() {
