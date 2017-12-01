@@ -71,7 +71,7 @@ public class CorridaDAO {
 		PreparedStatement stmt = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "DELETE FROM tb_rebu_passageiro WHERE nome = ?";
+			String sql = "DELETE FROM tb_rebu_corrida WHERE id = ?";
 			stmt = connection.getPreparedStatement(sql);
 			stmt.setInt(1, id);
 

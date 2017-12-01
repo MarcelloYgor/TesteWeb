@@ -3,9 +3,12 @@ package ejb;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import rebu.dao.CorridaDAO;
 import rebu.model.Corrida;
 
+@Stateless
 public class ValidaCorrida {
 
 	private CorridaDAO corDAO = new CorridaDAO();

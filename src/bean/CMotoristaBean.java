@@ -108,12 +108,4 @@ public class CMotoristaBean {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-
-	public ValidaMotorista getVldMotorista() {
-		return vldMotorista;
-	}
-
-	public void setVldMotorista(ValidaMotorista vldMotorista) {
-		this.vldMotorista = vldMotorista;
-	}
 }
