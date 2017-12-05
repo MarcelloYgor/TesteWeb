@@ -41,55 +41,17 @@
 			</ul>
 		</div>
 		</nav> </header>
-		<section id="corpo"> <article id="tronco"> <h:form>
-			<div class="form-row">
-				<div class="col-md-6 mb-3">
-					<div class="input-group">
-						<h:inputText class="form-control" value="#{PegaMotorista.busca}" />
-					</div>
-				</div>
-				<div class="col-md-3 mb-3">
-					<h:commandButton class="btn btn-primary"
-						action="#{PegaMotorista.consultar()}" value="Consultar" />
-				</div>
-				<div class="col-md-3 mb-3">
-					<a class="btn btn-primary" href="/RebuWAR/scorrida.xhtml"
-						role="button">Solicitar carro</a>
-				</div>
+		<section id="corpo"> <article id="tronco">
+		<div class="form-row">
+			<div class="col-md-3 mb-3">
+				<a class="btn btn-primary" href="/RebuWAR/scorrida.xhtml"
+					role="button">Solicitar carro</a>
 			</div>
-		</h:form> <br />
-
-		<table class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">First Name</th>
-					<th scope="col">Last Name</th>
-					<th scope="col">Username</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-				</tr>
-			</tbody>
-		</table>
-		</article> </section>
+		</div>
+		<br />
+		</article> <h:form rendered="#{PegaCorrida.resultado}">
+			<ui:include src="/consultacor.xhtml" />
+		</h:form> </section>
 
 		<footer id="rodape">
 		<p></p>

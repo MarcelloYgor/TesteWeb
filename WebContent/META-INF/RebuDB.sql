@@ -54,3 +54,5 @@ delete from tb_rebu_motorista;
 INSERT INTO tb_rebu_motorista(nome, dt_nasc, cpf, mod_carro, status, sexo) VALUES ('Jão', convert(datetime, '2017-11-07'), '12345678946', 'Corsa', 1, 'Masculino');
 
 select * from tb_rebu_passageiro;
+
+select * from tb_rebu_corrida;

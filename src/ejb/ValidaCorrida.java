@@ -1,6 +1,5 @@
 package ejb;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -13,14 +12,14 @@ public class ValidaCorrida {
 
 	private CorridaDAO corDAO = new CorridaDAO();
 	
-	public List<Corrida> consultaCorrida(int id) {
-		List<Corrida> retorno = new ArrayList<>();
-		retorno = corDAO.consultarCorrida(id);
+	public List<Corrida> consultaCorrida() {
+		List<Corrida> retorno;
+		retorno = corDAO.consultarCorrida();
 		return retorno;
 	}
 	
-	public void cadastraCorrida() {
-		
+	public void cadastraCorrida(Corrida corrida) {
+		corDAO.inserirCorrida(corrida);
 	}
 	
 	public void alterarCorrida() {

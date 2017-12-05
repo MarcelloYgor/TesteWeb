@@ -44,9 +44,12 @@
 		</nav> </header>
 		<section id="corpo"> <article id="tronco"> <h:form>
 			<div class="form-row">
+				<div class="col-md-1 mb-3">
+					<h:outputLabel value="Motorista: " />
+				</div>
 				<div class="col-md-6 mb-3">
 					<div class="input-group">
-						<p:inputText id="inputMot" class="form-control"
+						<h:inputText class="form-control"
 							value="#{ManterCorrida.buscaMot}" />
 					</div>
 				</div>
@@ -55,6 +58,23 @@
 						actionListener="#{ManterCorrida.pesquisarMotorista()}"
 						update="radioDT" icon="ui-icon-search" value="Pesquisar"
 						oncomplete="PF('motDialog').show()" />
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-md-1 mb-3">
+					<h:outputLabel value="Passageiro: " />
+				</div>
+				<div class="col-md-6 mb-3">
+					<div class="input-group">
+						<h:inputText class="form-control"
+							value="#{ManterCorrida.buscaPas}" />
+					</div>
+				</div>
+				<div class="col-md-3 mb-3">
+					<p:commandButton
+						actionListener="#{ManterCorrida.pesquisarPassageiro()}"
+						update="radioDT1" icon="ui-icon-search" value="Pesquisar"
+						oncomplete="PF('pasDialog').show()" />
 				</div>
 			</div>
 			<p:dialog header="Motoristas" widgetVar="motDialog" modal="true"
@@ -77,8 +97,36 @@
 						<h:outputText value="#{mot.status}" />
 					</p:column>
 					<f:facet name="footer">
-						<p:commandButton update="inputMot" actionListener="#{ManterCorrida.updateBusca()}" value="Escolher" type="button"
+						<p:commandButton value="Escolher" update="@form"
+							actionListener="#{ManterCorrida.updateBuscaMot()}"
 							onclick="PF('motDialog').hide();" />
+					</f:facet>
+				</p:dataTable>
+			</p:dialog>
+			<p:dialog header="Passageiros" widgetVar="pasDialog" modal="true"
+				showEffect="fade" hideEffect="fade" resizable="false">
+				<p:dataTable id="radioDT1" var="pas"
+					value="#{ManterCorrida.passageiros}"
+					selection="#{ManterCorrida.passageiro}"
+					rowKey="#{pas.idPassageiro}">
+					<p:column selectionMode="single"
+						style="width:16px;text-align:center" />
+					<p:column headerText="Id">
+						<h:outputText value="#{pas.idPassageiro}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{pas.nome}" />
+					</p:column>
+					<p:column headerText="Carro">
+						<h:outputText value="#{pas.dtNascimento}" />
+					</p:column>
+					<p:column headerText="Status">
+						<h:outputText value="#{pas.sexo}" />
+					</p:column>
+					<f:facet name="footer">
+						<p:commandButton value="Escolher" update="@form"
+							actionListener="#{ManterCorrida.updateBuscaPas()}"
+							onclick="PF('pasDialog').hide();" />
 					</f:facet>
 				</p:dataTable>
 			</p:dialog>
@@ -88,17 +136,21 @@
 					<p:growl id="message" showDetail="true" />
 
 					<p:commandButton value="Salvar"
-						actionListener="#{ManterPassageiro.salvar()}" update="message"
-						class="btn btn-primary">
+						actionListener="#{ManterCorrida.solicitarCorrida()}"
+						update="message" class="btn btn-primary">
 						<p:confirm header="Confirmação" message="Deseja cadastrar?"
 							icon="ui-icon-alert" />
 					</p:commandButton>
 
 					<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-						<p:commandButton value="Confirmar" type="button"
-							styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-						<p:commandButton value="Cancelar" type="button"
-							styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						<h:panelGrid columns="2" cellpadding="5">
+							<h:outputLabel for="vlCor" value="Valor da corrida: 	" />
+							<h:outputText id="vlCor" value="#{ManterCorrida.vlCorrida}" />
+							<p:commandButton value="Confirmar" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Cancelar" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</h:panelGrid>
 					</p:confirmDialog>
 					<button type="submit" class="btn btn-primary">Cancelar</button>
 				</div>

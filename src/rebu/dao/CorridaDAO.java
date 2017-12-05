@@ -11,10 +11,9 @@ import rebu.model.Corrida;
 
 public class CorridaDAO {
 
-	private Corrida corrida;
 	private RebuDatasource connection;
 
-	public void inserirCorrida() {
+	public void inserirCorrida(Corrida corrida) {
 		PreparedStatement stmt = null;
 		try {
 			connection = new RebuDatasource();
@@ -35,21 +34,19 @@ public class CorridaDAO {
 		}
 	}
 
-	public List<Corrida> consultarCorrida(int id) {
+	public List<Corrida> consultarCorrida() {
 		PreparedStatement stmt = null;
 		List<Corrida> retorno = null;
 		Corrida corrida = null;
 		try {
 			connection = new RebuDatasource();
-			String sql = "SELECT * FROM tb_rebu_corrida WHERE id = ?";
+			String sql = "SELECT * FROM tb_rebu_corrida";
 			stmt = connection.getPreparedStatement(sql);
-			stmt.setInt(1, id);
 
 			ResultSet result = stmt.executeQuery();
 			
 			retorno = new ArrayList<>();
 			while (result.next()) {
-				result.next();
 				corrida = new Corrida();
 				corrida.setIdCorrida(result.getInt("id_corrida"));;
 				corrida.setIdMotCorrida(result.getInt("id_mot_corrida"));
